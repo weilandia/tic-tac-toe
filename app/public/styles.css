@@ -7,6 +7,8 @@
   display: inline-block;
 }
 
+
+
 .block:hover {
   background: #9D00FF;
   border: 2px solid #9D00FF;
@@ -44,9 +46,16 @@ button {
   width: 150px;
 }
 
-button .game {
-  height: 30%;
-  width: 60%;
+.space {
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+  border: none;
+}
+
+.space:hover {
+  background: #9D00FF;
+  border: none;
 }
 
 .btn-primary-outline {

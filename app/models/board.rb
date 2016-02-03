@@ -7,7 +7,7 @@ class Board
     @board = Array.new(dimension) { Array.new(dimension) { nil } }
     @spaces = [*0..d].product([*0..d])
     @spaces_count = @spaces.length
-    @open_spaces = @spaces
+    @open_spaces = [*0..d].product([*0..d])
   end
 
   def empty_board?

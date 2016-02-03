@@ -1,4 +1,5 @@
-require 'models/game'
+require 'yaml/store'
+require 'models/game_manager'
 
 class TicTacToeApp < Sinatra::Base
   set :root, File.expand_path("..", __dir__)
@@ -8,20 +9,24 @@ class TicTacToeApp < Sinatra::Base
   end
 
   get '/game/human' do
-    @game = Game.new
+    @game = game_manager.create_game
     erb :human
   end
 
-  post '/game/move' do
-    if @game.over?
-      redirect '/game/over'
-    else
-      erb :game
-    end
+  post '/game/human/move' do
+    @game = game_manager.create_game
+    @game.move(params[:space].split(",").map(&:to_i))
+    require "pry"; binding.pry
+    game_manager.update(@game)
+    redirect '/game/human'
   end
 
   get '/computer' do
     erb :computer
   end
 
+  def game_manager
+    database = YAML::Store.new('db/games')
+    @games ||= GameManager.new(database)
+  end
 end

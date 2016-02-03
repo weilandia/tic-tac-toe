@@ -4,19 +4,20 @@ require 'board'
 require 'player'
 class Game
 
-  attr_reader :player_1, :player_2, :turn, :game
-  def initialize
-    @game = Board.new
-    @player_1 = Player.new(:x, "#0062FF")
-    @player_2 = Player.new(:o, "#FF0099")
-    @turn = @player_1
-    @move_count = 0
+  attr_reader :player_1, :player_2, :turn, :game, :move_count
+  def initialize(data)
+    @game = data[:board]
+    @player_1 = data[:player_1]
+    @player_2 = data[:player_2]
+    @turn = data[:turn]
+    @move_count = data[:move_count]
   end
 
   def move(space)
     return if !@game.spaces.include?(space)
     @game.move_response(@turn, space)
     @move_count += 1
+    require "pry"; binding.pry
     @turn == player_1 ? @turn = player_2 : @turn = player_1
     return draw if @game.open_spaces.length == 0
     check_for_win
