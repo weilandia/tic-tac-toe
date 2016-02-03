@@ -1,0 +1,79 @@
+
+.block {
+  height: 25%;
+  width:60%;
+  margin: 5;
+  border: 2px solid #9D00FF;
+  display: inline-block;
+}
+
+.block:hover {
+  background: #9D00FF;
+  border: 2px solid #9D00FF;
+}
+
+.jumbotron h1 {
+  font-weight: bold;
+  font-size: 75px;
+  color: #9D00FF;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.container{
+}
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+
+body, .jumbotron{
+  background-color: #000000;
+}
+
+button {
+  height: 150px;
+  width: 150px;
+}
+
+button .game {
+  height: 30%;
+  width: 60%;
+}
+
+.btn-primary-outline {
+  color: #0062FF;
+  border-color: #0062FF;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: #000000;
+}
+
+.btn-danger-outline {
+  color: #FF0099;
+  border-color: #FF0099;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.btn-warning-outline {
+  color: #9D00FF;
+  border-color: #9D00FF;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  color: #9D00FF;
+  border-color: #9D00FF;
+  border-radius: 10px;
+  text-decoration: none;
+}
