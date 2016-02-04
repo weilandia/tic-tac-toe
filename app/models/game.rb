@@ -1,7 +1,3 @@
-$LOAD_PATH.unshift(File.expand_path("./", __dir__))
-
-require 'board'
-require 'player'
 class Game
 
   attr_reader :player_1, :player_2, :turn, :game, :move_count
@@ -26,9 +22,7 @@ class Game
   def win?
     return if @move_count < (@game.dimension * 2) - 1
     status = lines.select { |l, v| !v.include?(nil) }
-    winner = status.select do |l, v|
-      v.map(&:sym).uniq.length == 1
-    end
+    winner = status.select { |l, v| v.map(&:sym).uniq.length == 1 }
     !winner.empty?
   end
 
@@ -45,7 +39,7 @@ class Game
       r2: game_board[1].to_a,
       r3: game_board[2].to_a,
       c1: [game_board[0][0],game_board[1][0],game_board[2][0]].to_a,
-      c2: [game_board[0][1],game_board[1][1],game_board[1][2]].to_a,
+      c2: [game_board[0][1],game_board[1][1],game_board[2][1]].to_a,
       c3: [game_board[0][2],game_board[1][2],game_board[2][2]].to_a,
       d1: [game_board[0][0],game_board[1][1],game_board[2][2]].to_a,
       d2: [game_board[2][0],game_board[1][1],game_board[0][2]].to_a,

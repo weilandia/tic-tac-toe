@@ -1,5 +1,3 @@
-require_relative 'game'
-
 class GameManager
   attr_reader :database
 
@@ -37,14 +35,6 @@ class GameManager
   def create_game
     gather_data
     Game.new(raw_game)
-  end
-
-  def scrub(game)
-    database.transaction do
-      database['game'].delete_if do |data|
-        data[:move_count] < game.move_count
-      end
-    end
   end
 
   def scrub(game)

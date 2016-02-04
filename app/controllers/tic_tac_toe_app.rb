@@ -1,9 +1,5 @@
 require 'yaml/store'
-require 'models/game_manager'
-
 class TicTacToeApp < Sinatra::Base
-  set :root, File.expand_path("..", __dir__)
-
   get '/' do
     erb :dashboard
   end
@@ -47,7 +43,11 @@ class TicTacToeApp < Sinatra::Base
   end
 
   def game_manager
-    database = YAML::Store.new('db/games')
+    if ENV["RACK_ENV"] == "test"
+      database = YAML::Store.new('db/games_test')
+    else
+      database = YAML::Store.new('db/games')
+    end
     @games ||= GameManager.new(database)
   end
 end
