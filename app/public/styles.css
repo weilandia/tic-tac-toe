@@ -58,6 +58,21 @@ button {
   border: none;
 }
 
+.spaceo {
+  height: 100%;
+  width: 100%;
+  background-color: #FF0099;
+  border: none;
+}
+
+.spacex {
+  height: 100%;
+  width: 100%;
+  background-color: #0062FF;
+  border: none;
+}
+
+
 .btn-primary-outline {
   color: #0062FF;
   border-color: #0062FF;

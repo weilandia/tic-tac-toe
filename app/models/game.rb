@@ -14,28 +14,26 @@ class Game
   end
 
   def move(space)
-    return if !@game.spaces.include?(space)
+    return if !@game.open_spaces.include?(space)
     @game.move_response(@turn, space)
     @move_count += 1
-    require "pry"; binding.pry
-    @turn == player_1 ? @turn = player_2 : @turn = player_1
-    return draw if @game.open_spaces.length == 0
-    check_for_win
   end
 
-  def check_for_win
-    return @turn if @move_count < (@game.dimension * 2) - 1
-    status = lines.select { |l, v| v.uniq.length == 1 && v[1] != nil }
-    return @turn if status.empty?
-    win(status.values[0][0])
+  def change_turns
+    @turn.sym == :x ? @turn = player_2 : @turn = player_1
   end
 
-  def win(player)
-    "#{player.sym} wins!"
+  def win?
+    return if @move_count < (@game.dimension * 2) - 1
+    status = lines.select { |l, v| !v.include?(nil) }
+    winner = status.select do |l, v|
+      v.map(&:sym).uniq.length == 1
+    end
+    !winner.empty?
   end
 
-  def draw
-    "It's a draw!"
+  def draw?
+    @game.open_spaces.length == 0
   end
 
   def game_board

@@ -8,6 +8,18 @@ class TicTacToeApp < Sinatra::Base
     erb :dashboard
   end
 
+  get '/game/draw' do
+    erb :draw
+  end
+
+  get '/game/win' do
+    @game = game_manager.create_game
+    game_manager.update(@game)
+    game_manager.scrub(@game)
+    game_manager.reset
+    erb :win
+  end
+
   get '/game/human' do
     @game = game_manager.create_game
     erb :human
@@ -16,9 +28,18 @@ class TicTacToeApp < Sinatra::Base
   post '/game/human/move' do
     @game = game_manager.create_game
     @game.move(params[:space].split(",").map(&:to_i))
-    require "pry"; binding.pry
+    if @game.win?
+      redirect '/game/win'
+    end
+    @game.change_turns
     game_manager.update(@game)
-    redirect '/game/human'
+    game_manager.scrub(@game)
+    if @game.draw?
+      game_manager.reset
+      redirect '/game/draw'
+    else
+      redirect '/game/human'
+    end
   end
 
   get '/computer' do

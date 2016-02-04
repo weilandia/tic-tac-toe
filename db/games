@@ -1,515 +1,61 @@
 ---
-game:
-- :board: &2 !ruby/object:Board
-    dimension: 3
-    board:
-    - - 
-      - 
-      - 
-    - - 
-      - 
-      - 
-    - - 
-      - 
-      - 
-    spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-    spaces_count: 9
-    open_spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-  :player_1: &1 !ruby/object:Player
-    sym: :x
-    color: "#0062FF"
-  :player_2: &3 !ruby/object:Player
-    sym: :o
-    color: "#FF0099"
-  :turn: *1
-  :move_count: 0
-- :board: *2
-  :player_1: *1
-  :player_2: *3
-  :turn: *1
-  :move_count: 0
-- :board: &4 !ruby/object:Board
-    dimension: 3
-    board:
-    - - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-      - 
-    - - 
-      - 
-      - 
-    - - 
-      - 
-      - 
-    spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-    spaces_count: 9
-    open_spaces:
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-  :player_1: *1
-  :player_2: *3
-  :turn: &5 !ruby/object:Player
-    sym: :o
-    color: "#FF0099"
-  :move_count: 1
-- :board: *4
-  :player_1: *1
-  :player_2: *3
-  :turn: *5
-  :move_count: 1
-- :board: &6 !ruby/object:Board
-    dimension: 3
-    board:
-    - - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-      - 
-    - - !ruby/object:Player
-        sym: :o
-        color: "#FF0099"
-      - 
-      - 
-    - - 
-      - 
-      - 
-    spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-    spaces_count: 9
-    open_spaces:
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-  :player_1: *1
-  :player_2: *3
-  :turn: &7 !ruby/object:Player
-    sym: :x
-    color: "#0062FF"
-  :move_count: 2
-- :board: *6
-  :player_1: *1
-  :player_2: *3
-  :turn: *7
-  :move_count: 2
-- :board: &8 !ruby/object:Board
-    dimension: 3
-    board:
-    - - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-      - 
-    - - !ruby/object:Player
-        sym: :o
-        color: "#FF0099"
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-    - - 
-      - 
-      - 
-    spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-    spaces_count: 9
-    open_spaces:
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-  :player_1: *1
-  :player_2: *3
-  :turn: &9 !ruby/object:Player
-    sym: :x
-    color: "#0062FF"
-  :move_count: 3
-- :board: *8
-  :player_1: *1
-  :player_2: *3
-  :turn: *9
-  :move_count: 3
-- :board: &10 !ruby/object:Board
-    dimension: 3
-    board:
-    - - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-      - 
-    - - !ruby/object:Player
-        sym: :o
-        color: "#FF0099"
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-    - - 
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-    spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-    spaces_count: 9
-    open_spaces:
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 2
-  :player_1: *1
-  :player_2: *3
-  :turn: &11 !ruby/object:Player
-    sym: :x
-    color: "#0062FF"
-  :move_count: 4
-- :board: *10
-  :player_1: *1
-  :player_2: *3
-  :turn: *11
-  :move_count: 4
-- :board: &12 !ruby/object:Board
-    dimension: 3
-    board:
-    - - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-      - 
-    - - !ruby/object:Player
-        sym: :o
-        color: "#FF0099"
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-    - - 
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-    spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-    spaces_count: 9
-    open_spaces:
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 2
-    - - 2
-      - 0
-  :player_1: *1
-  :player_2: *3
-  :turn: &13 !ruby/object:Player
-    sym: :x
-    color: "#0062FF"
-  :move_count: 5
-- :board: *12
-  :player_1: *1
-  :player_2: *3
-  :turn: *13
-  :move_count: 5
-- :board: &14 !ruby/object:Board
-    dimension: 3
-    board:
-    - - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-      - 
-    - - !ruby/object:Player
-        sym: :o
-        color: "#FF0099"
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-    - - 
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-    spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-    spaces_count: 9
-    open_spaces:
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 2
-    - - 2
-      - 0
-  :player_1: *1
-  :player_2: *3
-  :turn: &15 !ruby/object:Player
-    sym: :x
-    color: "#0062FF"
-  :move_count: 6
-- :board: *14
-  :player_1: *1
-  :player_2: *3
-  :turn: *15
-  :move_count: 6
-- :board: &16 !ruby/object:Board
-    dimension: 3
-    board:
-    - - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-    - - !ruby/object:Player
-        sym: :o
-        color: "#FF0099"
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - 
-    - - 
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-      - !ruby/object:Player
-        sym: :x
-        color: "#0062FF"
-    spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-    spaces_count: 9
-    open_spaces:
-    - - 0
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-  :player_1: *1
-  :player_2: *3
-  :turn: &17 !ruby/object:Player
-    sym: :x
-    color: "#0062FF"
-  :move_count: 7
-- :board: *16
-  :player_1: *1
-  :player_2: *3
-  :turn: *17
-  :move_count: 7
-- :board: *16
-  :player_1: *1
-  :player_2: *3
-  :turn: *17
-  :move_count: 7
-- :board: *16
-  :player_1: *1
-  :player_2: *3
-  :turn: *17
-  :move_count: 7
-board: *16
-player_1: *1
-player_2: *3
-turn: *17
-move_count: 7
+game: []
+board: !ruby/object:Board
+  dimension: 3
+  board:
+  - - 
+    - 
+    - 
+  - - 
+    - 
+    - 
+  - - 
+    - 
+    - 
+  spaces:
+  - - 0
+    - 0
+  - - 0
+    - 1
+  - - 0
+    - 2
+  - - 1
+    - 0
+  - - 1
+    - 1
+  - - 1
+    - 2
+  - - 2
+    - 0
+  - - 2
+    - 1
+  - - 2
+    - 2
+  spaces_count: 9
+  open_spaces:
+  - - 0
+    - 0
+  - - 0
+    - 1
+  - - 0
+    - 2
+  - - 1
+    - 0
+  - - 1
+    - 1
+  - - 1
+    - 2
+  - - 2
+    - 0
+  - - 2
+    - 1
+  - - 2
+    - 2
+player_1: &1 !ruby/object:Player
+  sym: :x
+  color: "#0062FF"
+player_2: !ruby/object:Player
+  sym: :o
+  color: "#FF0099"
+turn: *1
+move_count: 0

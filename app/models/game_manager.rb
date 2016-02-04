@@ -15,10 +15,10 @@ class GameManager
       database['player_2'] ||= Player.new(:o, "#FF0099")
       database['turn'] ||= database['player_1']
       database['move_count'] ||= 0
-      database['game'] << { board:            database['board'],
-                            player_1: database['player_1'],
-                            player_2: database['player_2'],
-                            turn: database['turn'],
+      database['game'] << { board:      database['board'],
+                            player_1:   database['player_1'],
+                            player_2:   database['player_2'],
+                            turn:       database['turn'],
                             move_count: database['move_count'],
                             }
     end
@@ -37,6 +37,33 @@ class GameManager
   def create_game
     gather_data
     Game.new(raw_game)
+  end
+
+  def scrub(game)
+    database.transaction do
+      database['game'].delete_if do |data|
+        data[:move_count] < game.move_count
+      end
+    end
+  end
+
+  def scrub(game)
+    database.transaction do
+      database['game'].delete_if do |data|
+        data[:move_count] < game.move_count
+      end
+    end
+  end
+
+  def reset
+    database.transaction do
+      database['game'] = []
+      database['board'] = Board.new
+      database['player_1'] = Player.new(:x, "#0062FF")
+      database['player_2'] = Player.new(:o, "#FF0099")
+      database['turn'] = database['player_1']
+      database['move_count'] = 0
+    end
   end
 
   def update(game)

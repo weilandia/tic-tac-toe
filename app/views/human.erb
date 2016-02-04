@@ -15,68 +15,139 @@
             <div class="block">
               <form action="/game/human/move" method="post">
                 <input type='hidden' class='space' name='space' value= '0,0'>
-                <input type='hidden' class='space' name='game' value= "<%= @game %>">
-                <input class='space' type='submit' value=''>
+                <% if @game.game.board[0][0] %>
+                  <% if @game.game.board[0][0].sym.to_s == "o" %>
+                    <input class='space<%= @game.game.board[0][0].sym.to_s %>' type='submit' value=''>
+                  <% elsif @game.game.board[0][0].sym.to_s == "x" %>
+                    <input class='space<%= @game.game.board[0][0].sym.to_s %>' type='submit' value=''>
+                  <% end %>
+                <% else %>
+                  <input class='space' type='submit' value=''>
+                <% end %>
+              </form>
               </form>
             </div>
             <div class="block">
               <form action="/game/human/move" method="post">
-                <input type='hidden' class='space' name='space' value= '0,1'>
-                <input type='hidden' class='space' name='game' value= "<%= @game %>">
-                <input class='space' type='submit' value=''>
+                <input type='hidden' class='space' name='space' value= '1,0'>
+                <% if @game.game.board[1][0] %>
+                  <% if @game.game.board[1][0].sym.to_s == "o" %>
+                    <input class='space<%= @game.game.board[1][0].sym.to_s %>' type='submit' value=''>
+                  <% elsif @game.game.board[1][0].sym.to_s == "x" %>
+                    <input class='space<%= @game.game.board[1][0].sym.to_s %>' type='submit' value=''>
+                  <% end %>
+                <% else %>
+                  <input class='space' type='submit' value=''>
+                <% end %>
+              </form>
               </form>
             </div>
             <div class="block">
               <form action="/game/human/move" method="post">
-                <input type='hidden' class='space' name='space' value= '0,2'>
-                <input type='hidden' class='space' name='game' value= "<%= @game %>">
-                <input class='space' type='submit' value=''>
+                <input type='hidden' class='space' name='space' value= '2,0'>
+                <% if @game.game.board[2][0] %>
+                  <% if @game.game.board[2][0].sym.to_s == "o" %>
+                    <input class='space<%= @game.game.board[2][0].sym.to_s %>' type='submit' value=''>
+                  <% elsif @game.game.board[2][0].sym.to_s == "x" %>
+                    <input class='space<%= @game.game.board[2][0].sym.to_s %>' type='submit' value=''>
+                  <% end %>
+                <% else %>
+                  <input class='space' type='submit' value=''>
+                <% end %>
               </form>
             </div>
           </div>
           <div class="col-xs-4 nopadding">
             <div class="block">
               <form action="/game/human/move" method="post">
-                <input type='hidden' class='space' name='space' value= '1,0'>
-                <input type='hidden' class='space' name='game' value= "<%= @game %>">
-                <input class='space' type='submit' value=''>
+                <input type='hidden' class='space' name='space' value= '0,1'>
+                <% if @game.game.board[0][1] %>
+                  <% if @game.game.board[0][1].sym.to_s == "o" %>
+                    <input class='space<%= @game.game.board[0][1].sym.to_s %>' type='submit' value=''>
+                  <% elsif @game.game.board[0][1].sym.to_s == "x" %>
+                    <input class='space<%= @game.game.board[0][1].sym.to_s %>' type='submit' value=''>
+                  <% end %>
+                  <% else %>
+                  <input class='space' type='submit' value=''>
+                <% end %>
+              </form>
               </form>
             </div>
             <div class="block">
               <form action="/game/human/move" method="post">
                 <input type='hidden' class='space' name='space' value= '1,1'>
-                <input type='hidden' class='space' name='game' value= "<%= @game %>">
-                <input class='space' type='submit' value=''>
+                <% if @game.game.board[1][1] %>
+                  <% if @game.game.board[1][1].sym.to_s == "o" %>
+                    <input class='space<%= @game.game.board[1][1].sym.to_s %>' type='submit' value=''>
+                  <% elsif @game.game.board[1][1].sym.to_s == "x" %>
+                    <input class='space<%= @game.game.board[1][1].sym.to_s %>' type='submit' value=''>
+                  <% end %>
+                <% else %>
+                  <input class='space' type='submit' value=''>
+                <% end %>
+              </form>
               </form>
             </div>
             <div class="block">
               <form action="/game/human/move" method="post">
-                <input type='hidden' class='space' name='space' value= '1,2'>
-                <input type='hidden' class='space' name='game' value= "<%= @game %>">
-                <input class='space' type='submit' value=''>
+                <input type='hidden' class='space' name='space' value= '2,1'>
+                <% if @game.game.board[2][1] %>
+                  <% if @game.game.board[2][1].sym.to_s == "o" %>
+                    <input class='space<%= @game.game.board[2][1].sym.to_s %>' type='submit' value=''>
+                  <% elsif @game.game.board[2][1].sym.to_s == "x" %>
+                    <input class='space<%= @game.game.board[2][1].sym.to_s %>' type='submit' value=''>
+                  <% end %>
+                <% else %>
+                  <input class='space' type='submit' value=''>
+                <% end %>
+              </form>
               </form>
             </div>
           </div>
           <div class="col-xs-4 nopadding">
             <div class="block">
               <form action="/game/human/move" method="post">
-                <input type='hidden' class='space' name='space' value= '2,0'>
-                <input type='hidden' class='space' name='game' value= "<%= @game %>">
-                <input class='space' type='submit' value=''>
+                <input type='hidden' class='space' name='space' value= '0,2'>
+                <% if @game.game.board[0][2] %>
+                  <% if @game.game.board[0][2].sym.to_s == "o" %>
+                    <input class='space<%= @game.game.board[0][2].sym.to_s %>' type='submit' value=''>
+                  <% elsif @game.game.board[0][2].sym.to_s == "x" %>
+                    <input class='space<%= @game.game.board[0][2].sym.to_s %>' type='submit' value=''>
+                  <% end %>
+                <% else %>
+                  <input class='space' type='submit' value=''>
+                <% end %>
+              </form>
               </form>
             </div>
             <div class="block">
               <form action="/game/human/move" method="post">
-                <input type='hidden' class='space' name='space' value= '2,1'>
-                <input type='hidden' class='space' name='game' value= "<%= @game %>">
-                <input class='space' type='submit' value=''>
+                <input type='hidden' class='space' name='space' value= '1,2'>
+                <% if @game.game.board[1][2] %>
+                  <% if @game.game.board[1][2].sym.to_s == "o" %>
+                    <input class='space<%= @game.game.board[1][2].sym.to_s %>' type='submit' value=''>
+                  <% elsif @game.game.board[1][2].sym.to_s == "x" %>
+                    <input class='space<%= @game.game.board[1][2].sym.to_s %>' type='submit' value=''>
+                  <% end %>
+                <% else %>
+                  <input class='space' type='submit' value=''>
+                <% end %>
+              </form>
               </form>
             </div>
             <div class="block">
               <form action="/game/human/move" method="post">
                 <input type='hidden' class='space' name='space' value= '2,2'>
-                <input type='hidden' class='space' name='game' value= "<%= @game %>">
-                <input class='space' type='submit' value=''>
+                <% if @game.game.board[2][2] %>
+                  <% if @game.game.board[2][2].sym.to_s == "o" %>
+                    <input class='space<%= @game.game.board[2][2].sym.to_s %>' type='submit' value=''>
+                  <% elsif @game.game.board[2][2].sym.to_s == "x" %>
+                    <input class='space<%= @game.game.board[2][2].sym.to_s %>' type='submit' value=''>
+                  <% end %>
+                <% else %>
+                  <input class='space' type='submit' value=''>
+                <% end %>
+              </form>
               </form>
             </div>
           </div>

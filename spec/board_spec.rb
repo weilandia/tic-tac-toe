@@ -3,6 +3,16 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'board'
 
+# <!-- <% @game.spaces.each do |space| %>
+#   <div class="block">
+#     <form action="/game/human/move" method="post">
+#       <input type='hidden' class='space' name='space' value= '<%=space.first%>,<%=space.last%>'>
+#       <input type='hidden' class='space' name='game' value= "<%= @game %>">
+#       <input class='space' type='submit' value=''>
+#     </form>
+#   </div>
+# <% end %> -->
+
 class BoardTest < Minitest::Test
   def test_board_initializes
     assert_equal Board, Board.new.class
