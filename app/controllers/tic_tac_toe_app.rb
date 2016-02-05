@@ -4,137 +4,66 @@ class TicTacToeApp < Sinatra::Base
     erb :dashboard
   end
 
-  get '/game/draw' do
-    game_manager.reset([])
-    erb :draw
-  end
-
   get '/game/human' do
-    if game_manager.gather_data([])[0][:move_count] == 0
-      game_manager.reset(["human","human"])
-    end
-    @game = game_manager.create_game(["human","human"])
+    @game = start_game(["human","human"])
     erb :game
   end
 
   get '/game/cpu_human' do
-    if game_manager.gather_data([])[0][:move_count] == 0
-      game_manager.reset(["chc","chh"])
-    end
-    @game = game_manager.create_game(["chc","chh"])
+    @game = start_game(["chc","chh"])
+    erb :game
+  end
+
+  get '/game/human_cpu' do
+    @game = start_game(["hch","hcc"])
     erb :game
   end
 
   get '/game/cpu_human/first' do
-    if game_manager.gather_data([])[0][:move_count] == 0
-      game_manager.reset(["chc","chh"])
-    end
-    @game = game_manager.create_game(["chc","chh"])
+    @game = start_game(["chc","chh"])
     @game.cpu_move
-    @game.change_turns
-    game_manager.update(@game)
-    game_manager.scrub(@game)
+    clean_data(@game)
     redirect '/game/cpu_human'
-  end
-
-  get '/game/human_cpu' do
-    if game_manager.gather_data([])[0][:move_count] == 0
-      game_manager.reset(["hch","hcc"])
-    end
-    @game = game_manager.create_game(["hch","hcc"])
-    erb :game
-  end
-
-  post '/game/chh/move' do
-    @game = game_manager.create_game(["chc","chh"])
-    if @game.game.open_spaces.include?(params[:space].split(",").map(&:to_i))
-      @game.move(params[:space].split(",").map(&:to_i))
-      if @game.win?
-        game_manager.update(@game)
-        game_manager.scrub(@game)
-        redirect '/game/cpu_human/win'
-      end
-      @game.change_turns
-      @game.cpu_move
-      if @game.win?
-        game_manager.update(@game)
-        game_manager.scrub(@game)
-        redirect '/game/cpu_human/win'
-      end
-      @game.change_turns
-      game_manager.update(@game)
-      game_manager.scrub(@game)
-      if @game.draw?
-        redirect '/game/draw'
-      else
-        redirect '/game/cpu_human'
-      end
-    else
-    redirect '/game/cpu_human'
-    end
-  end
-
-  post '/game/hch/move' do
-    @game = game_manager.create_game(["hch","hcc"])
-    if @game.game.open_spaces.include?(params[:space].split(",").map(&:to_i))
-      @game.move(params[:space].split(",").map(&:to_i))
-      if @game.win?
-        game_manager.update(@game)
-        game_manager.scrub(@game)
-        redirect '/game/human_cpu/win'
-      end
-      @game.change_turns
-      @game.cpu_move
-      if @game.win?
-        game_manager.update(@game)
-        game_manager.scrub(@game)
-        redirect '/game/human_cpu/win'
-      end
-      @game.change_turns
-      game_manager.update(@game)
-      game_manager.scrub(@game)
-      if @game.draw?
-        redirect '/game/draw'
-      else
-        redirect '/game/human_cpu'
-      end
-    else
-    redirect '/game/human_cpu'
-    end
   end
 
   post '/game/human/move' do
     @game = game_manager.create_game(["human","human"])
     if @game.game.open_spaces.include?(params[:space].split(",").map(&:to_i))
       @game.move(params[:space].split(",").map(&:to_i))
-      if @game.win?
-        redirect '/game/human/win'
-      end
-      @game.change_turns
-      game_manager.update(@game)
-      game_manager.scrub(@game)
-      if @game.draw?
-        redirect '/game/draw'
-      else
-        redirect '/game/human'
-      end
-    else
-    redirect '/game/human'
-    end
+      if @game.win? then redirect '/game/human/win' end
+      clean_data(@game)
+      if @game.draw? then redirect '/game/draw'
+      else redirect '/game/human' end
+    else redirect '/game/human' end
+  end
+
+  post '/game/chh/move' do
+    mode = ["chc","chh"]
+    win_path = '/game/cpu_human/win'
+    game_path = '/game/cpu_human'
+    computer_game_play(mode, win_path, game_path)
+  end
+
+  post '/game/hch/move' do
+    mode = ["hch","hcc"]
+    win_path = '/game/human_cpu/win'
+    game_path = '/game/human_cpu'
+    computer_game_play(mode, win_path, game_path)
+  end
+
+  get '/game/draw' do
+    game_manager.reset([])
+    erb :draw
   end
 
   get '/game/human/win' do
     @game = game_manager.create_game(["human","human"])
-    game_manager.update(@game)
-    game_manager.scrub(@game)
     game_manager.reset(["human","human"])
     erb :win
   end
 
   get '/game/human_cpu/win' do
     @game = game_manager.create_game(["hch","hcc"])
-    game_manager.update(@game)
-    game_manager.scrub(@game)
     game_manager.reset(["hch","hcc"])
     erb :win
   end
@@ -143,6 +72,42 @@ class TicTacToeApp < Sinatra::Base
     @game = game_manager.create_game(["chc","chh"])
     game_manager.reset(["chc","chh"])
     erb :win
+  end
+
+  def start_game(mode)
+    if game_manager.gather_data([])[0][:move_count] == 0
+      game_manager.reset(mode)
+    end
+    game_manager.create_game(mode)
+  end
+
+  def win(win_path)
+    clean_data(@game)
+    redirect win_path
+  end
+
+  def clean_data(game)
+    game_manager.update(game)
+    game_manager.scrub(game)
+  end
+
+  def open_spaces(current_game)
+    current_game.game.open_spaces
+  end
+
+  def computer_game_play(mode, win_path, game_path)
+    @game = game_manager.create_game(mode)
+    if open_spaces(@game).include?(params[:space].split(",").map(&:to_i))
+      @game.move(params[:space].split(",").map(&:to_i))
+      if @game.win? then win(win_path) end
+      @game.cpu_move
+      if @game.win? then win(win_path) end
+      clean_data(@game)
+      if @game.draw? then redirect '/game/draw'
+      else redirect game_path end
+    else
+    redirect game_path
+    end
   end
 
   def game_manager

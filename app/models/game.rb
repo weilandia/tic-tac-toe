@@ -15,6 +15,8 @@ class Game
     return if !@game.open_spaces.include?(space)
     @game.move_response(@turn, space)
     @move_count += 1
+    return if win?
+    change_turns
   end
 
   def change_turns

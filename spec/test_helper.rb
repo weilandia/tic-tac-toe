@@ -21,3 +21,8 @@ module TestHelpers
     @games ||= TaskManager.new(database)
   end
 end
+
+class FeatureTest < Minitest::Test
+  include Capybara::DSL
+  include TestHelpers
+end

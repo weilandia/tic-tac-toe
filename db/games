@@ -52,14 +52,14 @@ board: !ruby/object:Board
   - - 2
     - 2
 mode:
-- hch
-- hcc
+- human
+- human
 player_1: &1 !ruby/object:Player
-  mode: hch
+  mode: human
   sym: :x
   color: "#0062FF"
 player_2: !ruby/object:Player
-  mode: hcc
+  mode: human
   sym: :o
   color: "#FF0099"
 turn: *1
