@@ -1,66 +1,66 @@
 ---
-game:
-- :board: &2 !ruby/object:Board
-    dimension: 3
-    board:
-    - - 
-      - 
-      - 
-    - - 
-      - 
-      - 
-    - - 
-      - 
-      - 
-    spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-    spaces_count: 9
-    open_spaces:
-    - - 0
-      - 0
-    - - 0
-      - 1
-    - - 0
-      - 2
-    - - 1
-      - 0
-    - - 1
-      - 1
-    - - 1
-      - 2
-    - - 2
-      - 0
-    - - 2
-      - 1
-    - - 2
-      - 2
-  :player_1: &1 !ruby/object:Player
-    sym: :x
-    color: "#0062FF"
-  :player_2: &3 !ruby/object:Player
-    sym: :o
-    color: "#FF0099"
-  :turn: *1
-  :move_count: 0
-board: *2
-player_1: *1
-player_2: *3
+game: []
+board: !ruby/object:Board
+  dimension: 3
+  board:
+  - - 
+    - 
+    - 
+  - - 
+    - 
+    - 
+  - - 
+    - 
+    - 
+  spaces:
+  - - 0
+    - 0
+  - - 0
+    - 1
+  - - 0
+    - 2
+  - - 1
+    - 0
+  - - 1
+    - 1
+  - - 1
+    - 2
+  - - 2
+    - 0
+  - - 2
+    - 1
+  - - 2
+    - 2
+  spaces_count: 9
+  open_spaces:
+  - - 0
+    - 0
+  - - 0
+    - 1
+  - - 0
+    - 2
+  - - 1
+    - 0
+  - - 1
+    - 1
+  - - 1
+    - 2
+  - - 2
+    - 0
+  - - 2
+    - 1
+  - - 2
+    - 2
+mode:
+- hch
+- hcc
+player_1: &1 !ruby/object:Player
+  mode: hch
+  sym: :x
+  color: "#0062FF"
+player_2: !ruby/object:Player
+  mode: hcc
+  sym: :o
+  color: "#FF0099"
 turn: *1
 move_count: 0

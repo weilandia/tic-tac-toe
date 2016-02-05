@@ -7,13 +7,13 @@
   <body>
     <div class="container">
       <div class="jumbotron">
-        <div style="background-color: <%= @game.turn.color %>"><h3 class="text-center nopadding">tic tac toe</div>
+        <div style="background-color: <%= @game.turn.color %>; border-radius: 10px"><h3 class="text-center nopadding">tic tac toe</div>
       </div>
       <div class="container">
         <div class="row text-center">
           <div class="col-xs-4 nopadding">
             <div class="block">
-              <form action="/game/human/move" method="post">
+              <form action="/game/<%= @game.turn.mode %>/move" method="post">
                 <input type='hidden' class='space' name='space' value= '0,0'>
                 <% if @game.game.board[0][0] %>
                   <% if @game.game.board[0][0].sym.to_s == "o" %>
@@ -28,7 +28,7 @@
               </form>
             </div>
             <div class="block">
-              <form action="/game/human/move" method="post">
+              <form action="/game/<%= @game.turn.mode %>/move" method="post">
                 <input type='hidden' class='space' name='space' value= '1,0'>
                 <% if @game.game.board[1][0] %>
                   <% if @game.game.board[1][0].sym.to_s == "o" %>
@@ -43,7 +43,7 @@
               </form>
             </div>
             <div class="block">
-              <form action="/game/human/move" method="post">
+              <form action="/game/<%= @game.turn.mode %>/move" method="post">
                 <input type='hidden' class='space' name='space' value= '2,0'>
                 <% if @game.game.board[2][0] %>
                   <% if @game.game.board[2][0].sym.to_s == "o" %>
@@ -59,7 +59,7 @@
           </div>
           <div class="col-xs-4 nopadding">
             <div class="block">
-              <form action="/game/human/move" method="post">
+              <form action="/game/<%= @game.turn.mode %>/move" method="post">
                 <input type='hidden' class='space' name='space' value= '0,1'>
                 <% if @game.game.board[0][1] %>
                   <% if @game.game.board[0][1].sym.to_s == "o" %>
@@ -74,7 +74,7 @@
               </form>
             </div>
             <div class="block">
-              <form action="/game/human/move" method="post">
+              <form action="/game/<%= @game.turn.mode %>/move" method="post">
                 <input type='hidden' class='space' name='space' value= '1,1'>
                 <% if @game.game.board[1][1] %>
                   <% if @game.game.board[1][1].sym.to_s == "o" %>
@@ -89,7 +89,7 @@
               </form>
             </div>
             <div class="block">
-              <form action="/game/human/move" method="post">
+              <form action="/game/<%= @game.turn.mode %>/move" method="post">
                 <input type='hidden' class='space' name='space' value= '2,1'>
                 <% if @game.game.board[2][1] %>
                   <% if @game.game.board[2][1].sym.to_s == "o" %>
@@ -106,7 +106,7 @@
           </div>
           <div class="col-xs-4 nopadding">
             <div class="block">
-              <form action="/game/human/move" method="post">
+              <form action="/game/<%= @game.turn.mode %>/move" method="post">
                 <input type='hidden' class='space' name='space' value= '0,2'>
                 <% if @game.game.board[0][2] %>
                   <% if @game.game.board[0][2].sym.to_s == "o" %>
@@ -121,7 +121,7 @@
               </form>
             </div>
             <div class="block">
-              <form action="/game/human/move" method="post">
+              <form action="/game/<%= @game.turn.mode %>/move" method="post">
                 <input type='hidden' class='space' name='space' value= '1,2'>
                 <% if @game.game.board[1][2] %>
                   <% if @game.game.board[1][2].sym.to_s == "o" %>
@@ -136,7 +136,7 @@
               </form>
             </div>
             <div class="block">
-              <form action="/game/human/move" method="post">
+              <form action="/game/<%= @game.turn.mode %>/move" method="post">
                 <input type='hidden' class='space' name='space' value= '2,2'>
                 <% if @game.game.board[2][2] %>
                   <% if @game.game.board[2][2].sym.to_s == "o" %>

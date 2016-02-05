@@ -1,8 +1,10 @@
 class Game
+  include ComputerMoves
 
   attr_reader :player_1, :player_2, :turn, :game, :move_count
   def initialize(data)
     @game = data[:board]
+    @mode = data[:mode]
     @player_1 = data[:player_1]
     @player_2 = data[:player_2]
     @turn = data[:turn]

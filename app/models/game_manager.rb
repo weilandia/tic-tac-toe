@@ -5,19 +5,21 @@ class GameManager
     @database = database
   end
 
-  def gather_data
+  def gather_data(mode)
     database.transaction do
       database['game'] ||= []
       database['board'] ||= Board.new
-      database['player_1'] ||= Player.new(:x, "#0062FF")
-      database['player_2'] ||= Player.new(:o, "#FF0099")
+      database['mode'] ||= mode
+      database['player_1'] ||= Player.new(:x, "#0062FF", mode[0])
+      database['player_2'] ||= Player.new(:o, "#FF0099", mode[1])
       database['turn'] ||= database['player_1']
       database['move_count'] ||= 0
       database['game'] << { board:      database['board'],
                             player_1:   database['player_1'],
                             player_2:   database['player_2'],
                             turn:       database['turn'],
-                            move_count: database['move_count'],
+                            move_count: database['move_count'], mode:
+                            database['mode']
                             }
     end
   end
@@ -32,8 +34,8 @@ class GameManager
     raw_games.last
   end
 
-  def create_game
-    gather_data
+  def create_game(mode)
+    gather_data(mode)
     Game.new(raw_game)
   end
 
@@ -45,14 +47,15 @@ class GameManager
     end
   end
 
-  def reset
+  def reset(mode)
     database.transaction do
       database['game'] = []
       database['board'] = Board.new
-      database['player_1'] = Player.new(:x, "#0062FF")
-      database['player_2'] = Player.new(:o, "#FF0099")
+      database['player_1'] = Player.new(:x, "#0062FF", mode[0])
+      database['player_2'] = Player.new(:o, "#FF0099", mode[1])
       database['turn'] = database['player_1']
       database['move_count'] = 0
+      database['mode'] = mode
     end
   end
 
