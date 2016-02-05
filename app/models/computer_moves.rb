@@ -57,7 +57,7 @@ module ComputerMoves
 
   def check_warning(warning)
     line_hash = warning.select do |l, v|
-       v.compact == [on_deck, on_deck]
+       v.compact.to_s == [on_deck, on_deck].to_s
     end
     return nil if line_hash.empty?
     line_hash
@@ -65,7 +65,7 @@ module ComputerMoves
 
   def check_win(win_line)
     line_hash = win_line.select do |l, v|
-       v.compact == [turn, turn]
+       v.compact.to_s == [turn, turn].to_s
     end
     return nil if line_hash.empty?
     line_hash

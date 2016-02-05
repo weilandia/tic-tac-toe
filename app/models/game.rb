@@ -29,6 +29,7 @@ class Game
 
   def change_turns
     turn.sym == :x ? @turn = player_2 : @turn = player_1
+    turn.sym == :o ? @on_deck = player_1 : @on_deck = player_2
   end
 
   def win?
