@@ -1,33 +1,41 @@
 class Game
   include ComputerMoves
 
-  attr_reader :player_1, :player_2, :turn, :game, :move_count
+  attr_reader :player_1, :player_2, :turn, :on_deck, :game, :move_count, :winner
   def initialize(data)
     @game = data[:board]
     @mode = data[:mode]
     @player_1 = data[:player_1]
     @player_2 = data[:player_2]
     @turn = data[:turn]
+    @on_deck = data[:on_deck]
     @move_count = data[:move_count]
+    @winner = winner
   end
 
   def move(space)
     return if !@game.open_spaces.include?(space)
     @game.move_response(@turn, space)
     @move_count += 1
+    check_winner
     return if win?
     change_turns
+    @game.board
+  end
+
+  def check_winner
+    win? ? @winner = turn : nil
   end
 
   def change_turns
-    @turn.sym == :x ? @turn = player_2 : @turn = player_1
+    turn.sym == :x ? @turn = player_2 : @turn = player_1
   end
 
   def win?
     return if @move_count < (@game.dimension * 2) - 1
     status = lines.select { |l, v| !v.include?(nil) }
-    winner = status.select { |l, v| v.map(&:sym).uniq.length == 1 }
-    !winner.empty?
+    w = status.select { |l, v| v.map(&:sym).uniq.length == 1 }
+    !w.empty?
   end
 
   def draw?
@@ -36,6 +44,10 @@ class Game
 
   def game_board
     @game.board
+  end
+
+  def open_spaces
+    @game.open_spaces
   end
 
   def lines

@@ -2,7 +2,7 @@ require_relative "../test_helper"
 
 class GameTest < Minitest::Test
   def game_data
-    mode = ["human", "human"]
+    mode = []
     player_1 = Player.new(:x, "#0062FF", mode[0])
     player_2 = Player.new(:o, "#FF0099", mode[1])
     {
@@ -11,6 +11,7 @@ class GameTest < Minitest::Test
       player_1: player_1,
       player_2: player_2,
       turn: player_1,
+      on_deck: player_2,
       move_count: 0
     }
   end

@@ -6,4 +6,8 @@ class Player
     @sym = sym
     @color = color
   end
+
+  # def inspect
+  #   "#{self.sym}"
+  # end
 end

@@ -52,15 +52,19 @@ board: !ruby/object:Board
   - - 2
     - 2
 mode:
-- human
-- human
+- hch
+- hcc
 player_1: &1 !ruby/object:Player
-  mode: human
+  mode: hch
   sym: :x
   color: "#0062FF"
 player_2: !ruby/object:Player
-  mode: human
+  mode: hcc
   sym: :o
   color: "#FF0099"
 turn: *1
+on_deck: !ruby/object:Player
+  mode: 
+  sym: :o
+  color: "#FF0099"
 move_count: 0

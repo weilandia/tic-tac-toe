@@ -13,13 +13,15 @@ class GameManager
       database['player_1'] ||= Player.new(:x, "#0062FF", mode[0])
       database['player_2'] ||= Player.new(:o, "#FF0099", mode[1])
       database['turn'] ||= database['player_1']
+      database['on_deck'] ||= database['player_2']
       database['move_count'] ||= 0
       database['game'] << { board:      database['board'],
                             player_1:   database['player_1'],
                             player_2:   database['player_2'],
                             turn:       database['turn'],
-                            move_count: database['move_count'], mode:
-                            database['mode']
+                            on_deck:    database['on_deck'],
+                            move_count: database['move_count'],
+                            mode:       database['mode']
                             }
     end
   end
@@ -54,6 +56,7 @@ class GameManager
       database['player_1'] = Player.new(:x, "#0062FF", mode[0])
       database['player_2'] = Player.new(:o, "#FF0099", mode[1])
       database['turn'] = database['player_1']
+      database['on_deck'] ||= database['player_2']
       database['move_count'] = 0
       database['mode'] = mode
     end
@@ -63,6 +66,7 @@ class GameManager
     database.transaction do
       database['board'] = game.game
       database['turn'] = game.turn
+      database['on_deck'] = game.on_deck
       database['move_count'] = game.move_count
     end
   end
