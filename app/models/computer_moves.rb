@@ -12,7 +12,6 @@ module ComputerMoves
 
   def cpu_move
     return move([1,1]) if center_open?
-    return move([0,0]) if first_three?
     return go_for_win if !win_line.nil?
     return block if !danger_line.nil?
     attack
@@ -20,10 +19,6 @@ module ComputerMoves
 
   def center_open?
     open_spaces.include?([1,1])
-  end
-
-  def first_three?
-    move_count < 3
   end
 
   def open?(space)
@@ -75,9 +70,11 @@ module ComputerMoves
   end
 
   def check_corners
-    open_spaces.select do |space|
-      space == [0,0] || [0,2] || [2,0] || [2,2]
+    @game.moves.select do |space| #finds corners occupied by opponent
+      require "pry"; binding.pry
+      space[1] == turn
     end
+    #select opposite corners
   end
 
   def attack

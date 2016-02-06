@@ -18,7 +18,7 @@ class Board
   def move_response(player, s)
     space_status_accessor(s, player)
     @open_spaces.delete(s)
-    @moves << s
+    @moves << [s, player]
     self
   end
 
