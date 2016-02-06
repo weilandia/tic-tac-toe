@@ -13,8 +13,8 @@ module ComputerMoves
   def cpu_move
     return move([1,1]) if center_open?
     return move([0,0]) if first_three?
-    go_for_win
-    block
+    return go_for_win if !win_line.nil?
+    return block if !danger_line.nil?
     attack
   end
 
@@ -34,16 +34,15 @@ module ComputerMoves
     line = input
     y = line.values[0].index(nil)
     space = MAP[line.keys[0]][y]
+    if !open_spaces.include?(space) then space = MAP[line.keys[y]][0] end
     move(space)
   end
 
   def go_for_win
-    return if win_line.nil?
     smart_move(win_line)
   end
 
   def block
-    return if danger_line.nil?
     smart_move(danger_line)
   end
 

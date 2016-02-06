@@ -1,7 +1,7 @@
 class Game
   include ComputerMoves
 
-  attr_reader :player_1, :player_2, :turn, :on_deck, :game, :move_count, :winner
+  attr_reader :player_1, :player_2, :turn, :on_deck, :game, :move_count, :winner, :moves
   def initialize(data)
     @game = data[:board]
     @mode = data[:mode]
@@ -15,8 +15,8 @@ class Game
 
   def move(space)
     return if !@game.open_spaces.include?(space)
-    @game.move_response(@turn, space)
     @move_count += 1
+    @game.move_response(@turn, space)
     check_winner
     return if win?
     change_turns

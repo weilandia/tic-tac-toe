@@ -1,6 +1,6 @@
 class Board
 
-  attr_reader :open_spaces, :spaces_count, :board, :spaces, :dimension
+  attr_reader :open_spaces, :spaces_count, :board, :spaces, :dimension, :moves
   def initialize(dimension = 3)
     d = dimension - 1
     @dimension = dimension
@@ -8,6 +8,7 @@ class Board
     @spaces = [*0..d].product([*0..d])
     @spaces_count = @spaces.length
     @open_spaces = [*0..d].product([*0..d])
+    @moves = []
   end
 
   def empty_board?
@@ -17,6 +18,7 @@ class Board
   def move_response(player, s)
     space_status_accessor(s, player)
     @open_spaces.delete(s)
+    @moves << s
     self
   end
 
