@@ -73,7 +73,8 @@ class CPUHumanGameTest < Minitest::Test
     g = Game.new(game_data)
     g.cpu_move
     g.move([0,1])
+    corner_count = g.open_corners.count
     g.cpu_move
-    refute g.open_spaces.include?([0,0])
+    assert_equal corner_count - 1,  g.open_corners.count
   end
 end

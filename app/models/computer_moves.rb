@@ -19,6 +19,7 @@ module ComputerMoves
 
   def cpu_move
     return move([1,1]) if center_open?
+    return move([0,0]) if move_count == 1
     return go_for_win if !win_line.nil?
     return block if !danger_line.nil?
     attack
