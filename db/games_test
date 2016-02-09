@@ -63,7 +63,7 @@ player_2: !ruby/object:Player
   color: "#FF0099"
 turn: *1
 on_deck: !ruby/object:Player
-  mode: chc
+  mode: human
   sym: :x
   color: "#0062FF"
 move_count: 0

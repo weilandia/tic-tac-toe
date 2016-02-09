@@ -69,12 +69,12 @@ class CPUHumanGameTest < Minitest::Test
     refute g.open_spaces.include?([1,2])
   end
 
-  def test_cpu_attacks_corners
+  def test_cpu_responds_to_fork
     g = Game.new(game_data)
+    g.move([0,0])
     g.cpu_move
-    g.move([0,1])
-    corner_count = g.open_corners.count
+    g.move([2,2])
     g.cpu_move
-    assert_equal corner_count - 1,  g.open_corners.count
+    refute g.open_spaces.include?([1,0])
   end
 end
