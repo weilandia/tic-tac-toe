@@ -59,7 +59,7 @@ class Game
       c2: [game_board[0][1],game_board[1][1],game_board[2][1]].to_a,
       c3: [game_board[0][2],game_board[1][2],game_board[2][2]].to_a,
       d1: [game_board[0][0],game_board[1][1],game_board[2][2]].to_a,
-      d2: [game_board[2][0],game_board[1][1],game_board[0][2]].to_a,
+      d2: [game_board[0][2],game_board[1][1],game_board[2][0]].to_a,
     }
   end
 end
